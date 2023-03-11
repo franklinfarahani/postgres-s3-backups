@@ -31,7 +31,7 @@ const uploadToS3 = async ({ name, path }: {name: string, path: string}) => {
   console.log("Backup uploaded to S3...");
 }
 
-const dumpToFile = async (path: string) => {
+export const dumpToFile = async (path: string) => {
   console.log("Dumping DB to file...");
 
   await new Promise((resolve, reject) => {
@@ -76,3 +76,15 @@ export const backup = async () => {
 
   console.log("DB backup complete...")
 }
+
+export const main = async () => {
+  try {
+    await backup();
+  } catch (error) {
+    console.error("Error while running backup: ", error)
+  }
+};
+
+main();
+
+
